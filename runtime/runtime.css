@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "T3 Persian";
+  src: url("./Vazirmatn.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range:
+    U+0600-06FF,
+    U+0750-077F,
+    U+0870-088E,
+    U+0890-0891,
+    U+0897-08E1,
+    U+08E3-08FF,
+    U+200C-200E,
+    U+2010-2011,
+    U+204F,
+    U+2E41,
+    U+FB50-FDFF,
+    U+FE70-FE74,
+    U+FE76-FEFC;
+}
+
+/* runtime.js keeps the inline stack (including user-chosen fonts) prefixed;
+   this covers the first paint before it runs. */
+:root {
+  --font-sans: "T3 Persian", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+[data-t3pt-direction] {
+  unicode-bidi: isolate;
+  text-align: start;
+}
+
+:is(ul, ol)[data-t3pt-direction] > li {
+  unicode-bidi: isolate;
+  text-align: start;
+}
+
+[data-t3pt-direction] :is(pre, code, kbd, samp) {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+/* A closed folded section's chevron points right; in an RTL title it must
+   point at the text. Opened, T3 rotates it to point down. */
+[data-markdown-details-summary][dir="rtl"]:not([data-panel-open]) > svg {
+  scale: -1 1;
+}
+
+[data-t3pt-label] {
+  unicode-bidi: isolate;
+}

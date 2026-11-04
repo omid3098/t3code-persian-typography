@@ -1,0 +1,5 @@
+.artifacts/
+*.log
+state.json
+node_modules/
+.agent-work/

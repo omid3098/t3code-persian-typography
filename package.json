@@ -1,0 +1,11 @@
+{
+  "name": "t3code-persian-typography",
+  "version": "1.1.2",
+  "private": true,
+  "description": "Vazirmatn and smart Persian/English direction in the main T3 Code desktop app",
+  "license": "MIT",
+  "scripts": {
+    "test": "node tests/runtime.test.cjs && node tests/asar.test.mjs",
+    "check": "node --check runtime/runtime.js && node --check tools/asar-patch.mjs && npm test"
+  }
+}
