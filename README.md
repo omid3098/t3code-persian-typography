@@ -14,9 +14,30 @@ The runtime:
 
 ## Install
 
-Requirements: Windows and T3 Code desktop. Node.js 18+ is used when present;
-otherwise the scripts run on T3 Code's own bundled runtime. Run it from any
-terminal, including one **inside** T3 Code:
+Requirements:
+
+- Windows 10 or 11 (tested on Windows 11, x64).
+- [T3 Code desktop](https://github.com/pingdotgg/t3code/releases/latest).
+- [Git](https://git-scm.com/downloads), to download this repository.
+
+Node.js is not required. The scripts use Node.js 18+ when it is present and
+T3 Code's own bundled runtime otherwise. PowerShell and `tar.exe` come with
+Windows.
+
+### Ask your agent
+
+Send this message to your coding agent. It installs whatever is missing and
+sets everything up:
+
+```text
+Install T3 Code Persian Typography on this computer from
+https://github.com/omid3098/t3code-persian-typography. Install anything it
+requires that is missing, then follow "Installation task" in its AGENTS.md.
+```
+
+### Install it yourself
+
+Run this from any terminal, including one **inside** T3 Code:
 
 ```powershell
 git clone https://github.com/omid3098/t3code-persian-typography.git
@@ -46,7 +67,6 @@ or threads. Before the first patch it saves the exact original here:
 ## Verify
 
 ```powershell
-npm test
 powershell -ExecutionPolicy Bypass -File .\doctor.ps1
 ```
 
@@ -59,7 +79,7 @@ a throwaway copy of the installed T3 Code: installing while T3 Code runs, an
 update while closed, "Restart to update" both when the watcher wins the race
 and when T3 Code opens the build first (with a T3 Code helper that outlives
 it), a half-written file, a runtime upgrade, and an update prepared ahead from
-its downloaded installer (about four minutes):
+its downloaded installer (about four minutes; this test needs Node.js):
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tests\watch.e2e.ps1

@@ -84,7 +84,8 @@ function Invoke-Patcher([string]$T3, [string[]]$Arguments) {
         $output = & $node.Source $script @Arguments
     } else {
         $env:ELECTRON_RUN_AS_NODE = "1"
-        try { $output = & $T3 $script @Arguments } finally { Remove-Item Env:ELECTRON_RUN_AS_NODE }
+        # The pipe makes PowerShell wait for this GUI executable and set $LASTEXITCODE.
+        try { $output = & $T3 $script @Arguments | ForEach-Object { "$_" } } finally { Remove-Item Env:ELECTRON_RUN_AS_NODE }
     }
     if ($LASTEXITCODE) { throw "asar-patch.mjs $($Arguments[0]) failed." }
     return ($output -join "`n") | ConvertFrom-Json

@@ -7,12 +7,14 @@ T3 Code desktop app on Windows.
 
 When a user asks to install or update this repository:
 
-1. Run `powershell -ExecutionPolicy Bypass -File .\install.ps1` from the repository root. Inside a running T3 Code this is fine: the installer hands the patch to the watcher (state `pending`), which applies it once T3 Code and its updater have exited.
-2. Tell the user to fully close T3 Code once and reopen it; check `install.log` and `watch.log` in `%LOCALAPPDATA%\T3CodePersianTypography` if it did not apply.
-3. Run `npm test` and `powershell -ExecutionPolicy Bypass -File .\doctor.ps1`.
-4. Launch T3 Code from its normal shortcut and verify one Persian thread (title, message, and composer).
-5. T3 Code updates replace `resources\server.asar`; the `T3CodePersianTypography` logon task (`watch.ps1`) re-applies the patch automatically. Check `%LOCALAPPDATA%\T3CodePersianTypography\watch.log` if it did not.
-6. If the renderer-contract check fails, update the selectors in `runtime/runtime.js` and `RENDERER_CONTRACTS` in `tools/asar-patch.mjs` together; do not bypass the check.
+1. **T3 Code.** Look for `T3 Code*.exe` in `%LOCALAPPDATA%\Programs\t3code` and `%LOCALAPPDATA%\Programs\T3 Code`. If it is missing, download the Windows installer for this computer's architecture from https://github.com/pingdotgg/t3code/releases/latest and run it. If T3 Code is installed elsewhere, pass its path to `install.ps1` with `-T3Exe`. Done when the executable exists.
+2. **Repository.** If `git` is missing, run `winget install --id Git.Git -e`. Clone https://github.com/omid3098/t3code-persian-typography.git, or run `git pull` in an existing clone. Leave Node.js as it is: the scripts run without it. Done when the repository root is the current folder and up to date.
+3. Run `powershell -ExecutionPolicy Bypass -File .\install.ps1` from the repository root. Inside a running T3 Code this is fine: the installer hands the patch to the watcher (state `pending`), which applies it once T3 Code and its updater have exited.
+4. Tell the user to fully close T3 Code once and reopen it; check `install.log` and `watch.log` in `%LOCALAPPDATA%\T3CodePersianTypography` if it did not apply.
+5. Run `powershell -ExecutionPolicy Bypass -File .\doctor.ps1`. It also runs the tests. Done when it prints `Doctor passed`; `Pending` means T3 Code is still open.
+6. Launch T3 Code from its normal shortcut and verify one Persian thread (title, message, and composer).
+7. T3 Code updates replace `resources\server.asar`; the `T3CodePersianTypography` logon task (`watch.ps1`) re-applies the patch automatically. Check `%LOCALAPPDATA%\T3CodePersianTypography\watch.log` if it did not.
+8. If the renderer-contract check fails, update the selectors in `runtime/runtime.js` and `RENDERER_CONTRACTS` in `tools/asar-patch.mjs` together; do not bypass the check.
 
 The installer patches `resources\server.asar` (the renderer is
 `apps/server/dist/client` inside it) and preserves the exact original at

@@ -31,7 +31,8 @@ function Invoke-Node([string[]]$Arguments) {
         $output = & $node.Source @Arguments
     } else {
         $env:ELECTRON_RUN_AS_NODE = "1"
-        try { $output = & $state.t3Exe @Arguments } finally { Remove-Item Env:ELECTRON_RUN_AS_NODE }
+        # The pipe makes PowerShell wait for this GUI executable and set $LASTEXITCODE.
+        try { $output = & $state.t3Exe @Arguments | ForEach-Object { "$_" } } finally { Remove-Item Env:ELECTRON_RUN_AS_NODE }
     }
     if ($LASTEXITCODE) { throw "Check failed: $($Arguments -join ' ')" }
     return $output
