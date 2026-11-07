@@ -1,9 +1,23 @@
 # T3 Code Persian Typography
 
-This repository adds Vazirmatn and smart Persian/English direction to the main
-T3 Code desktop app on Windows.
+## Linux port
 
-## Installation task
+On Linux follow `README.linux.md` and use `install.sh`, `doctor.sh` and
+`uninstall.sh` with Node.js 18+. The Linux package puts its renderer in
+`resources/app.asar`; the Linux port is allowed to patch only that archive's
+client index and the three typography payload files using the append-only
+patcher. The prohibition on modifying app.asar below applies to Windows.
+Never change other application code, the executable, settings or stored data.
+Do not close the app automatically. If it is open or system files are not
+writable, prepare the patch and report the command to run after closing it.
+Run `npm run check` and `npm run test:linux`; the optional `T3PT_TEST_ASAR`
+integration test always operates on a temporary copy of the real archive.
+Linux currently uses manual reinstallation after app updates, not a watcher.
+
+This repository adds Vazirmatn and smart Persian/English direction to the main
+T3 Code desktop app on Windows and Linux.
+
+## Installation task (Windows)
 
 When a user asks to install or update this repository:
 
