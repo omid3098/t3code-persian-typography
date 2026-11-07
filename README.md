@@ -1,8 +1,11 @@
 # T3 Code Persian Typography
 
 Vazirmatn and smart Persian/English direction for the **main T3 Code desktop
-app** on Windows. The normal T3 Code shortcut gets the feature; there is no
+app** on Windows and Linux. The normal T3 Code shortcut gets the feature; there is no
 separate launcher.
+
+On Linux, follow [the Linux installation guide](README.linux.md) for
+`install.sh`, `doctor.sh` and `uninstall.sh`. The Windows instructions follow below.
 
 The runtime:
 
@@ -12,7 +15,7 @@ The runtime:
 - isolates Persian thread titles, project names, and other short labels without flipping the LTR app shell;
 - recomputes direction while responses stream and while you type.
 
-## Install
+## Install (Windows)
 
 Requirements:
 
@@ -64,7 +67,7 @@ or threads. Before the first patch it saves the exact original here:
 %LOCALAPPDATA%\T3CodePersianTypography\server.asar.backup
 ```
 
-## Verify
+## Verify (Windows)
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\doctor.ps1
@@ -101,7 +104,7 @@ Outside chat content, T3 Code keeps its LTR shell. Only text-only elements that
 contain Persian letters (such as a thread title) get a direction, and their
 alignment is left to the app.
 
-## T3 Code updates (automatic)
+## T3 Code updates (Windows, automatic)
 
 Every T3 Code update replaces `server.asar`, and the Nightly channel updates
 often. `install.ps1` therefore registers a per-user logon task,
@@ -151,7 +154,7 @@ The runtime relies on T3 Code's internal renderer markup
 build. If one is missing, installation stops before changing T3 Code and
 reports which one needs updating.
 
-## Uninstall
+## Uninstall (Windows)
 
 Quit T3 Code, then run:
 
